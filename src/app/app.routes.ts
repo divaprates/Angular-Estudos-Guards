@@ -3,10 +3,11 @@ import { Home } from './components/home/home';
 import { Login } from './components/login/login';
 import { Produtos } from './components/produtos/produtos';
 import { Sobre } from './components/sobre/sobre';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {
-        path: 'home',
+        path: '',
         component: Home
     },
     {
@@ -15,10 +16,15 @@ export const routes: Routes = [
     },
     {
         path: 'produtos',
-        component: Produtos
+        component: Produtos,
+        canActivate: [authGuard]
     },
     {
         path: 'login',
         component: Login
+    },
+    {
+        path: '**',
+        redirectTo: ''
     }
 ];
